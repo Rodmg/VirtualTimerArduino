@@ -5,7 +5,7 @@ VirtualTimer::VirtualTimer()
   VirtualTimer(1000);
 }
 
-VirtualTimer::VirtualTimer(int ms)
+VirtualTimer::VirtualTimer(unsigned long ms)
 {
   startTime = 0;
   timeout = 0;
@@ -17,24 +17,25 @@ bool VirtualTimer::expired()
   return (left_ms() <= 0);
 }
 
-void VirtualTimer::countdown_ms(int ms)
+void VirtualTimer::countdown_ms(unsigned long ms)
 {
-  long now = millis();
+  unsigned long now = millis();
   startTime = now;
   timeout = ms;
 }
 
-void VirtualTimer::countdown(int seconds)
+void VirtualTimer::countdown(unsigned long seconds)
 {
-  long now = millis();
+  unsigned long now = millis();
   startTime = now;
   timeout = (seconds * 1000);
 }
 
-long VirtualTimer::left_ms()
+unsigned long VirtualTimer::left_ms()
 {
   yield();
-  long now = millis();
-  long left = timeout - (now - startTime);
-  return (left < 0) ? 0 : left;
+  unsigned long now = millis();
+  if((unsigned long)(now - startTime) >= timeout) return 0;
+  unsigned long left = timeout - (unsigned long)(now - startTime);
+  return left;
 }

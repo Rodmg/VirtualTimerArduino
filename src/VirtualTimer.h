@@ -6,14 +6,14 @@
 class VirtualTimer
 {
 private:
-  long startTime, timeout;
+  unsigned long startTime, timeout;
 public:
   VirtualTimer();
-  VirtualTimer(int ms);
+  VirtualTimer(unsigned long ms);
   bool expired();
-  void countdown_ms(int ms);
-  void countdown(int seconds);
-  long left_ms();
+  void countdown_ms(unsigned long ms);
+  void countdown(unsigned long seconds);
+  unsigned long left_ms();
 };
 
 #endif //VIRTUAL_TIMER_H
