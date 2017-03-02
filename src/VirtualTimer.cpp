@@ -33,7 +33,7 @@ void VirtualTimer::countdown(unsigned long seconds)
 
 unsigned long VirtualTimer::left_ms()
 {
-  yield();
+  //yield();
   unsigned long now = millis();
   if((unsigned long)(now - startTime) >= timeout) return 0;
   unsigned long left = timeout - (unsigned long)(now - startTime);
